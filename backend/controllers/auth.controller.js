@@ -25,8 +25,8 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     //renders new random profilepic based on username
-    const girlPfp = `https://avatar.iran.liara.run/public/girl?username=${username}`;
-    const boyPfp = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+    const girlPfp = `https://api.dicebear.com/9.x/initials/svg?seed=${username}`;
+    const boyPfp = `https://api.dicebear.com/9.x/initials/svg?seed=${username}`;
 
     const newUser = new User({
       fullName,
@@ -85,8 +85,8 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.cookie("jwt","",{maxAge:0})
-    res.status(200).json({message:"logged out successfully"})
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "logged out successfully" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "Internal server error" });
