@@ -26,8 +26,11 @@ const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center w-11/12 sm:w-full lg:min-w-96 max-w-sm mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
+        <h1 className="text-3xl font-semibold text-center text-gray-300 pb-3">
+          <span className="text-pink-400"> ChatAnon</span>
+        </h1>
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Sign Up <span className="text-pink-400"> ChatApp</span>
+          Sign Up
         </h1>
 
         <form onSubmit={handleSubmit}>
@@ -104,8 +107,15 @@ const SignUp = () => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-4 border border-slate-700" disabled={loading}> 
-              {loading?<span className="loading loading-spinner"></span>:"Sign up"}
+            <button
+              className="btn btn-block btn-sm mt-4 border border-slate-700"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign up"
+              )}
             </button>
           </div>
         </form>
