@@ -1,14 +1,41 @@
-// import MessageContainer from "../../components/sidebarComponents/messages/MessageContainer";
-// import Sidebar from "../../components/sidebarComponents/Sidebar";
-import MessageContainer from '../../components/messages/MessageContainer';
-import Sidebar from "../../components/sidebarComponents/Sidebar"
+import { useEffect, useState } from "react";
+import MessageContainer from "../../components/messages/MessageContainer";
+import Sidebar from "../../components/sidebarComponents/Sidebar";
+import useConversation from "../../store/useConversation";
 
 const Home = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { selectedConversation } = useConversation();
+
+  useEffect(() => {
+    if (selectedConversation && window.innerWidth < 640) {
+      setIsSidebarOpen(false);
+    }
+  }, [selectedConversation]);
+
   return (
     <div className="flex flex-col sm:flex-row min-h-screen w-full rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
       {/* Sidebar: Hide on mobile */}
-      <div className="hidden sm:block sm:w-1/4">
+      <button
+        className="sm:hidden p-2 bg-blue-500 text-white fixed top-0 left-0 z-50 rounded-md"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        ☰
+      </button>
+
+      <div
+        className={`fixed inset-0 bg-gray-800 transition-transform transform ${
+          isSidebarOpen ? "translate-x-0 z-50" : "-translate-x-full"
+        } sm:translate-x-0 sm:relative sm:w-1/4 sm:z-auto`}
+      >
         <Sidebar />
+        {/* Close button on mobile */}
+        <button
+          className="sm:hidden absolute top-5 right-3 text-white text-2xl"
+          onClick={() => setIsSidebarOpen(false)}
+        >
+          ✖
+        </button>
       </div>
 
       {/* Message container takes the rest of the space */}
@@ -20,53 +47,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-// import { useState } from "react";
-// import MessageContainer from "../../components/sidebarComponents/messages/MessageContainer";
-// import Sidebar from "../../components/sidebarComponents/Sidebar";
-
-// const Home = () => {
-//   const [sidebarWidth, setSidebarWidth] = useState(250); 
-
-//   const handleMouseDown = (e) => {
-//     e.preventDefault();
-//     const startX = e.clientX;
-
-//     const onMouseMove = (moveEvent) => {
-//       const newWidth = sidebarWidth + (moveEvent.clientX - startX);
-//       if (newWidth > 100) {
-//         setSidebarWidth(newWidth);
-//       }
-//     };
-
-//     const onMouseUp = () => {
-//       document.removeEventListener("mousemove", onMouseMove);
-//       document.removeEventListener("mouseup", onMouseUp);
-//     };
-
-//     document.addEventListener("mousemove", onMouseMove);
-//     document.addEventListener("mouseup", onMouseUp);
-//   };
-
-//   return (
-//     <div className="flex min-h-screen w-full rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
-//       <div
-//         className="border-r border-slate-500 p-4 flex flex-col min-h-screen"
-//         style={{ width: sidebarWidth }}
-//       >
-//         <Sidebar />
-//       </div>
-//       <div
-//         className="cursor-col-resize bg-gray-300 w-2"
-//         onMouseDown={handleMouseDown}
-//       ></div>
-
-//       <div className="flex-1 min-h-screen">
-//         <MessageContainer />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
