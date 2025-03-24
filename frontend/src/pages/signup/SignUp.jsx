@@ -57,7 +57,7 @@ const SignUp = () => {
               type="text"
               placeholder="johndoe"
               className="w-full input input-bordered h-10"
-              value={inputs.username}
+              value={inputs.username.trim()}
               onChange={(e) =>
                 setInputs({ ...inputs, username: e.target.value })
               }
@@ -72,7 +72,7 @@ const SignUp = () => {
               type="password"
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
-              value={inputs.password}
+              value={inputs.password.trim()}
               onChange={(e) =>
                 setInputs({ ...inputs, password: e.target.value })
               }
@@ -87,7 +87,7 @@ const SignUp = () => {
               type="password"
               placeholder="Confirm Password"
               className="w-full input input-bordered h-10"
-              value={inputs.confirmPassword}
+              value={inputs.confirmPassword.trim()}
               onChange={(e) =>
                 setInputs({ ...inputs, confirmPassword: e.target.value })
               }
