@@ -53,7 +53,7 @@ const Login = () => {
             to="/signup"
             className="text-sm  hover:underline hover:text-blue-600 mt-4 inline-block"
           >
-            {"Don't"} have an account? Register here.
+            {"Don't"} have an account? Register.
           </Link>
 
           <div>

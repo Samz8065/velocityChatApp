@@ -103,7 +103,7 @@ const SignUp = () => {
             className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
             to="/login"
           >
-            Already have an account? Login here.
+            Already have an account? Login.
           </Link>
 
           <div>
