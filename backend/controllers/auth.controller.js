@@ -25,8 +25,8 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     //renders new random profilepic based on username
-    const girlPfp = `https://api.dicebear.com/9.x/initials/svg?seed=${username}`;
-    const boyPfp = `https://api.dicebear.com/9.x/initials/svg?seed=${username}`;
+    const girlPfp = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+    const boyPfp = `https://avatar.iran.liara.run/public/boy?username=${username}`;
 
     const newUser = new User({
       fullName,
